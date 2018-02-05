@@ -58,7 +58,7 @@ class Pitch(db.Model):
 
     def save_pitch(self):
         db.session.add(self)
-        db.session.commit
+        db.session.commit()
 
     @classmethod
     def  clear_pitches(cls):
@@ -73,10 +73,15 @@ class Comments(db.Model):
 
     id = dbColumn(db.Interger,primary_key = True)
     sentiment = dbColumn(db.String(255))
-    time_of_post = dbColumn(db.DateTime, default= datetime.utcnow)
+    time_posted = dbColumn(db.DateTime, default= datetime.utcnow)
     user_id = dbColumn(db.Interger, ForeignKey("users.id"))
     pitch_id = dbColumn(db.Interger, ForeignKey("pitch.id"))
 
     def save_comments(self):
         db.session.add(self)
-        db.session.commit
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,id):
+        comments = Comments.query.filter_by(Comments.time_posted.desc())filter_by(pitches_id=id).all()
+    
