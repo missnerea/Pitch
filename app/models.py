@@ -76,3 +76,7 @@ class Comments(db.Model):
     time_of_post = dbColumn(db.DateTime, default= datetime.utcnow)
     user_id = dbColumn(db.Interger, ForeignKey("users.id"))
     pitch_id = dbColumn(db.Interger, ForeignKey("pitch.id"))
+
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit
