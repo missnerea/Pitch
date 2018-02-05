@@ -45,3 +45,13 @@ class PitchCategory(db.Model):
     def get_categories(cls):
         categories = PitchCategory.query.all()
         return categories
+
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+
+    id= db.Column(db.Interger,primary_key = True)
+    details = db.Column(db.String(255))
+    category_id= db.Column(db.Interger,db.ForeignKey("categories.id"))
+    user_id= db.Column(db.Interger,db.ForeignKey("users.id"))
+    comment = db.relationship("Comments", backref="pitches", lazy = "dynamic")
+    vote = db.relationship("Votes", backref="pitches", lazy = "dynamic")
