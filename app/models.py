@@ -1,11 +1,12 @@
 from . import db
+from flask_login import UserMixin
 
 
 #User model
 class User(UserMixin,db.Model):
 
     __tablename__='users'
-    id = db.Column(db.Interger,primary_key = True)
+    id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255), unique = True, index = True)
     password_hash = db.Column(db.String(255))
@@ -32,7 +33,7 @@ class User(UserMixin,db.Model):
 class PitchCategory(db.Model):
     __tablename__ = 'categories'
 
-    id= db.Column(db.Interger, primary_key = True)
+    id= db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255))
     description = db.Column(db.String(255))
 
@@ -49,7 +50,7 @@ class PitchCategory(db.Model):
 class Pitch(db.Model):
     __tablename__ = 'pitches'
 
-    id= db.Column(db.Interger,primary_key = True)
+    id= db.Column(db.Integer,primary_key = True)
     details = db.Column(db.String(255))
     category_id= db.Column(db.Interger,db.ForeignKey("categories.id"))
     user_id= db.Column(db.Interger,db.ForeignKey("users.id"))
@@ -71,11 +72,11 @@ class Pitch(db.Model):
 class Comments(db.Model):
     __tablename__= 'comments'
 
-    id = dbColumn(db.Interger,primary_key = True)
+    id = dbColumn(db.Integer,primary_key = True)
     sentiment = dbColumn(db.String(255))
     time_posted = dbColumn(db.DateTime, default= datetime.utcnow)
-    user_id = dbColumn(db.Interger, ForeignKey("users.id"))
-    pitch_id = dbColumn(db.Interger, ForeignKey("pitch.id"))
+    user_id = dbColumn(db.Integer, ForeignKey("users.id"))
+    pitch_id = dbColumn(db.Integer, ForeignKey("pitch.id"))
 
     def save_comments(self):
         db.session.add(self)
@@ -83,16 +84,16 @@ class Comments(db.Model):
 
     @classmethod
     def get_comments(cls,id):
-        comments = Comments.query.filter_by(Comments.time_posted.desc())filter_by(pitches_id=id).all()
+        comments = Comments.query.filter_by(Comments.time_posted.desc()).filter_by(pitches_id=id).all()
         return comments
 
 class Votes(db.Model):
     __tablename__='votes'
 
-    id = db.Column(db.Interger,primary_key= True)
-    vote = db.Column(db.Interger)
-    pitch_id = db.Column(db.Interger,db.ForeignKey("pitch.id"))
-    user_id= db.Column(db.Interger,db.ForeignKey("users.id"))
+    id = db.Column(db.Integer,primary_key= True)
+    vote = db.Column(db.Integer)
+    pitch_id = db.Column(db.Integer,db.ForeignKey("pitch.id"))
+    user_id= db.Column(db.Integer,db.ForeignKey("users.id"))
 
     def save_votes(self):
         db.session.add(self)
