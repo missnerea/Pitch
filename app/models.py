@@ -67,3 +67,12 @@ class Pitch(db.Model):
     def get_pitches(self):
         pitches = Pitch.query.filter_by(category_id=id).all()
         return pitches
+
+class Comments(db.Model):
+    __tablename__= 'comments'
+
+    id = dbColumn(db.Interger,primary_key = True)
+    sentiment = dbColumn(db.String(255))
+    time_of_post = dbColumn(db.DateTime, default= datetime.utcnow)
+    user_id = dbColumn(db.Interger, ForeignKey("users.id"))
+    pitch_id = dbColumn(db.Interger, ForeignKey("pitch.id"))
