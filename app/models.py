@@ -63,3 +63,7 @@ class Pitch(db.Model):
     @classmethod
     def  clear_pitches(cls):
         Pitch.all_pitches.clear()
+
+    def get_pitches(self):
+        pitches = Pitch.query.filter_by(category_id=id).all()
+        return pitches
