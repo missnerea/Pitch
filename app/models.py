@@ -93,3 +93,7 @@ class Votes(db.Model):
     vote = db.Column(db.Interger)
     pitch_id = db.Column(db.Interger,db.ForeignKey("pitch.id"))
     user_id= db.Column(db.Interger,db.ForeignKey("users.id"))
+
+    def save_votes(self):
+        db.session.add(self)
+        db.session.commit()
