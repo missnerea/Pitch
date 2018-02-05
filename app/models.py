@@ -59,3 +59,7 @@ class Pitch(db.Model):
     def save_pitch(self):
         db.session.add(self)
         db.session.commit
+
+    @classmethod
+    def  clear_pitches(cls):
+        Pitch.all_pitches.clear()
