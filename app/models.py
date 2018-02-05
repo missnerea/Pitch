@@ -55,3 +55,7 @@ class Pitch(db.Model):
     user_id= db.Column(db.Interger,db.ForeignKey("users.id"))
     comment = db.relationship("Comments", backref="pitches", lazy = "dynamic")
     vote = db.relationship("Votes", backref="pitches", lazy = "dynamic")
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit
