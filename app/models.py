@@ -97,3 +97,8 @@ class Votes(db.Model):
     def save_votes(self):
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def get_votes(cls,user_id,pitches_id):
+        votes = Votes.query.filter_by(user_id=user_id,pitches_id=pitches_id).all()
+        return votes
