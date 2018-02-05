@@ -84,4 +84,12 @@ class Comments(db.Model):
     @classmethod
     def get_comments(cls,id):
         comments = Comments.query.filter_by(Comments.time_posted.desc())filter_by(pitches_id=id).all()
-    
+        return comments
+
+class Votes(db.Model):
+    __tablename__='votes'
+
+    id = db.Column(db.Interger,primary_key= True)
+    vote = db.Column(db.Interger)
+    pitch_id = db.Column(db.Interger,db.ForeignKey("pitch.id"))
+    user_id= db.Column(db.Interger,db.ForeignKey("users.id"))
