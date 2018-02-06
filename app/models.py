@@ -75,8 +75,8 @@ class Comments(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     sentiment = db.Column(db.String(255))
     time_posted = db.Column(db.DateTime, default= datetime.utcnow)
-    user_id = db.Column(db.Integer, ForeignKey("users.id"))
-    pitch_id = db.Column(db.Integer, ForeignKey("pitch.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitch.id"))
 
     def save_comments(self):
         db.session.add(self)
