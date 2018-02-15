@@ -6,7 +6,7 @@ class Config:
     '''
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://missnerea:Ea150697@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://missnerea:Ea0712343800@localhost/pitch'
 
     SECRET_KEY = "try harder" #os.environ.get("SECRET_KEY")
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
@@ -15,6 +15,8 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    SUBJECT_PREFIX = 'One Minute Pitch'
+    SENDER_EMAIL = 'ela.amish@gmail.com'
 
 class ProdConfig(Config):
     '''
