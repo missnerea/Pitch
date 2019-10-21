@@ -35,7 +35,7 @@ TwitterAPI==2.4.6
 urllib3==1.22
 URLObject==2.4.3
 visitor==0.1.3
-Werkzeug==0.13
+Werkzeug==0.15.3
 WTForms==2.1
 MarkupSafe==1.0
 pycrypto==2.6.1
@@ -48,4 +48,4 @@ SecretStorage==2.3.1
 six==1.11.0
 SQLAlchemy==1.1.15
 visitor==0.1.3
-Werkzeug==0.13
+Werkzeug==0.15.3
